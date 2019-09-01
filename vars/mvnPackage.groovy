@@ -9,7 +9,7 @@ def call(String mavenToUse = 'M3'){
                 try{
                     sh "mvn clean install -DskipTests -DskipITs"
                 }catch (err){
-                    echo 'Error while Repo fetch'
+                    echo 'Error while packaging code'
                 }
             }
     }
