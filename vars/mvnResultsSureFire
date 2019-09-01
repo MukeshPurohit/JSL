@@ -1,5 +1,18 @@
+#!/usr/bin/env groovy
 
-stage('Results') {
-      junit '**/target/surefire-reports/TEST-*.xml'
-      archiveArtifacts 'target/*.jar'
-   }
+def call(String mavenToUse = 'M3'){
+    stage('Results'){
+        withMaven(
+            maven: "${mavenToUse}"
+        ){
+          script{
+                try{
+                        junit '**/target/surefire-reports/TEST-*.xml'
+                        archiveArtifacts 'target/*.jar'
+                }catch (err){
+                    echo 'Error while Repo fetch'
+                }
+            }
+    }
+}
+}
