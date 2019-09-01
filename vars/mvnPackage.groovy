@@ -3,9 +3,14 @@
 def call(String mavenToUse = 'M3'){
     stage('Package'){
         withMaven(
-            maven: "${mavenName}"
+            maven: "${mavenToUse}"
         ){
-            sh "mvn clean install -DskipTests -DskipITs"
-        }
+          script{
+                try{
+                    sh "mvn clean install -DskipTests -DskipITs"
+                }catch (err){
+                    echo 'Error while Repo fetch'
+                }
+            }
     }
 }
