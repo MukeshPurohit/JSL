@@ -9,7 +9,7 @@ def call(String mavenName = 'M3'){
                 try{
                   sh "mvn sonar:sonar"
                 }catch (err){
-                    echo 'Ate the error in sonar' //Temporarily
+                    echo 'Ate the error in sonar'
                 }
             }
         }
