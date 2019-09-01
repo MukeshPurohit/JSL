@@ -10,7 +10,7 @@ def call(String mavenToUse = 'M3'){
                         junit '**/target/surefire-reports/TEST-*.xml'
                         archiveArtifacts 'target/*.jar'
                 }catch (err){
-                    echo 'Error while Repo fetch'
+                    echo 'Error while displaying results'
                 }
             }
     }
