@@ -7,7 +7,7 @@ def call(String mavenName = 'M3'){
         ){
             script{
                 try{
-                  sh "git 'https://github.com/jglick/simple-maven-project-with-tests.git'"
+                  git url: 'https://github.com/jglick/simple-maven-project-with-tests.git'
                 }catch (err){
                     echo 'Error while Repo fetch'
                 }
