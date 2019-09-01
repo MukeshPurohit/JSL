@@ -1,6 +1,36 @@
-#!/usr/bin/env groovy
-
-def call(String mavenToUse = 'M3'){
-  // using the Pipeline Maven plugin we can set maven configuration settings, publish test results, and annotate the Jenkins console
-      sh 'mvn clean test'
- }
+def call(String mavenName = 'M3'){
+    stage('Tests'){
+        withMaven(
+            maven: "${mavenName}"
+        ){
+            sh "mvn test"
+        }
+    }
+    stage('Sonar'){
+        withMaven(
+            maven: "${mavenName}"
+        ){
+            script{
+                try{
+                  sh "mvn sonar:sonar"
+                }catch (err){
+                    echo 'Ate the error in sonar' //Temporarily
+                }
+            }
+        }
+    }
+    stage('Package'){
+        withMaven(
+            maven: "${mavenName}"
+        ){
+            sh "mvn clean install -DskipTests -DskipITs"
+        }
+    }
+    stage('Push to Nexus'){
+        withMaven(
+            maven: "${mavenName}"
+        ){
+            sh "mvn deploy -DskipTests -DskipITs"
+        }
+    }
+}
