@@ -7,9 +7,11 @@ def call(String mavenName = 'M3'){
         ){
             script{
                 try{
-                  sh "mvn sonar:sonar"
+                    withSonarQubeEnv('sonar') {
+                        sh "mvn sonar:sonar"
+                    }
                 }catch (err){
-                    echo 'Ate the error in sonar'
+                    echo 'Error in sonar processing'
                 }
             }
         }
