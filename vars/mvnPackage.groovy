@@ -8,3 +8,4 @@ def call(String mavenToUse = 'M3'){
             sh "mvn clean install -DskipTests -DskipITs"
         }
     }
+}
