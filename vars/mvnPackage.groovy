@@ -14,3 +14,4 @@ def call(String mavenToUse = 'M3'){
             }
     }
 }
+}
