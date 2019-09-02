@@ -6,7 +6,7 @@ class BuildConfig implements Serializable {
 
         Map config = [:]
         config = body
-        echo "inside buildConfig class"
+        println "inside buildConfig class"
 
         if (body in Map) {
             config = body
