@@ -12,7 +12,7 @@ def call(def body = [:]) {
         ){
             script{
                 try{
-                  git url: ${config.GitURL}
+                  git url: "${config.GitURL}"
                 }catch (err){
                     echo 'Error while Repo fetch....'
                 }
