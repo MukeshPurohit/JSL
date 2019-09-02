@@ -8,9 +8,7 @@ def call(def body = [:]) {
         ){
             script{
                 try{
-                      echo "${mavenName}"
                        sh "mvn test"
-                       echo 'Unit Testing completed successfully'
                 }catch (err){
                     echo 'Error while perfomring Unit Testing of maven repo'
                 }
@@ -18,15 +16,3 @@ def call(def body = [:]) {
         }
     }
 }
-
-/*
-def call(String mavenName = 'M3'){
-    stage('Tests'){
-        withMaven(
-            maven: "${mavenName}"
-        ){
-            sh "mvn test"
-        }
-    }
-}
-*/
