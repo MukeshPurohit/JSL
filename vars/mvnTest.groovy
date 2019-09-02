@@ -9,7 +9,7 @@ def call(def body = [:]) {
             script{
                 try{
                       echo "${mavenName}"
-                       mvn test
+                       sh "mvn test"
                        echo 'Unit Testing completed successfully'
                 }catch (err){
                     echo 'Error while perfomring Unit Testing of maven repo'
