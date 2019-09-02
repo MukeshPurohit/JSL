@@ -9,7 +9,7 @@ def call ( body ) {
         throw e;
     } finally {
 
-        config.each{ k, v -> println "${k}:${v}" }
+        config.each{ k, v -> println "${k}::${v}" }
 
     }
 }
