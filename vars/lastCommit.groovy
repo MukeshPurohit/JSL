@@ -1,19 +1,37 @@
-node( 'some_node' ) 
+#!/usr/bin/env groovy
+import com.bt.java.BuildConfig
+def call(def body = [:]) 
 {
-  stage( "Phase 1" ) 
-  {
-      checkout scm
-      def lastSuccessfulCommit = getLastSuccessfulCommit()
-      def currentCommit = commitHashForBuild( currentBuild.rawBuild )
-      if (lastSuccessfulCommit) 
-      {
-        commits = sh(
-          script: "git rev-list $currentCommit \"^$lastSuccessfulCommit\"",
-          returnStdout: true
-        ).split('\n')
-        println "Commits are: $commits"
-      }
-  }
+    config = BuildConfig.resolve(body)
+    stage('Checkout Git repo')
+    {
+        withMaven(
+            maven: "${mavenName}"
+        )
+        {
+            script
+            {
+                try
+                {
+                      git url: "${config.GitURL}"
+                      def lastSuccessfulCommit = getLastSuccessfulCommit()
+                      def currentCommit = commitHashForBuild( currentBuild.rawBuild )
+                      if (lastSuccessfulCommit) 
+                      {
+                        commits = sh(
+                          script: "git rev-list $currentCommit \"^$lastSuccessfulCommit\"",
+                          returnStdout: true
+                        ).split('\n')
+                        println "Commits are: $commits"
+                      }
+
+                }catch (err)
+                {
+                    echo 'Error while retrieving maven repo ' "${config.GitURL}"
+                }
+            }
+        }
+    }
 }
 
 def getLastSuccessfulCommit() 
@@ -27,8 +45,8 @@ def getLastSuccessfulCommit()
   return lastSuccessfulHash
 }
 
-@NonCPS
-def commitHashForBuild( build ) {
+def commitHashForBuild( build ) 
+{
   def scmAction = build?.actions.find { action -> action instanceof jenkins.scm.api.SCMRevisionAction }
   return scmAction?.revision?.hash
 }
