@@ -11,7 +11,7 @@ def call(def body = [:]) {
                 try{
                       git url: "${config.GitURL}"
                 }catch (err){
-                    echo 'Error while fetching maven repo ' "${config.GitURL}"
+                    echo 'Error while retrieving maven repo ' "${config.GitURL}"
                 }
             }
         }
