@@ -6,5 +6,18 @@ def call(def body = [:]) {
     config.each{ k, v -> println "${k} <--> ${v}" }
     
     println "***inside loadBody.groovy************** ${config.GitURL}"
-
+    stage('Checkout'){
+        withMaven(
+            maven: "${mavenName}"
+        ){
+            script{
+                try{
+                  git url: ${config.GitURL}
+                }catch (err){
+                    echo 'Error while Repo fetch....'
+                }
+            }
+        }
     }
+
+}
