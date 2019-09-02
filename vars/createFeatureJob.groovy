@@ -17,16 +17,16 @@ String gitRepo = "$gitRepo"
 String gitRepoName = "$gitRepoName"
 String credentialsId = "$credentialsId"
 */
-String folderName = "feature"
-String jobName = "ABC"
-String jobScript = "Jenkinsfile"
-String gitRepo = "https://github.com/jglick"
-String gitRepoName = "simple-maven-project-with-tests"
-String credentialsId = "null"
-
 
 def call(def body = [:]) 
 {
+    String folderName = "feature"
+    String jobName = "ABC"
+    String jobScript = "Jenkinsfile"
+    String gitRepo = "https://github.com/jglick"
+    String gitRepoName = "simple-maven-project-with-tests"
+    String credentialsId = "null"
+
     Jenkins jenkins = Jenkins.instance
     config = BuildConfig.resolve(body)
     def folder = jenkins.getItem(folderName)
