@@ -1,14 +1,3 @@
-/*
-def call(String mavenName = 'M3'){
-    stage('Tests'){
-        withMaven(
-            maven: "${mavenName}"
-        ){
-            sh "mvn test"
-        }
-    }
-}
-*/
 #!/usr/bin/env groovy
 import com.bt.java.BuildConfig
 def call(def body = [:]) {
@@ -27,3 +16,15 @@ def call(def body = [:]) {
         }
     }
 }
+
+/*
+def call(String mavenName = 'M3'){
+    stage('Tests'){
+        withMaven(
+            maven: "${mavenName}"
+        ){
+            sh "mvn test"
+        }
+    }
+}
+*/
