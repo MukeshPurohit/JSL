@@ -67,7 +67,7 @@ def call(def body = [:])
 
     // Set the branch somehow
     job.save()
-    job.build()
-    job.run()
-    job.execute()
+    job.doBuild()
+    //job.run()
+    //job.execute()
 }
