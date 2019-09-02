@@ -23,7 +23,7 @@ def call(def body = [:])
     String folderName = "feature"
     String jobName = "ABC"
     String jobScript = "Jenkinsfile"
-    String gitRepo = "https://github.com/jglick"
+    String gitRepo = "https://github.com/jglick/simple-maven-project-with-tests.git"
     String gitRepoName = "simple-maven-project-with-tests"
     String credentialsId = "null"
 
